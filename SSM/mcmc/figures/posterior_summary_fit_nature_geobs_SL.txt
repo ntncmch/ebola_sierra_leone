@@ -1,0 +1,7 @@
+C__sierra_leone	R0__sierra_leone	phi__sierra_leone	rho__sierra_leone	   fitness	    index
+Min.   : 42.67  	Min.   :1.128  	Min.   :0.0710  	Min.   :0.2359  	Min.   :-75.56  	Min.   :    0  
+1st Qu.: 78.42  	1st Qu.:1.317  	1st Qu.:0.1590  	1st Qu.:0.5152  	1st Qu.:-65.06  	1st Qu.:25000  
+Median : 89.57  	Median :1.345  	Median :0.1902  	Median :0.5807  	Median :-63.90  	Median :50000  
+Mean   : 92.42  	Mean   :1.345  	Mean   :0.1990  	Mean   :0.5818  	Mean   :-64.24  	Mean   :50000  
+3rd Qu.:103.01  	3rd Qu.:1.374  	3rd Qu.:0.2297  	3rd Qu.:0.6502  	3rd Qu.:-63.06  	3rd Qu.:74999  
+Max.   :181.60  	Max.   :1.584  	Max.   :0.4956  	Max.   :0.9258  	Max.   :-61.89  	Max.   :99999  

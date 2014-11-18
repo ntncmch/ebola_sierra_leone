@@ -1,0 +1,9 @@
+Simple SEIR fit for Sierra Leone ebola outbreak
+
+# Data
+
+# Model
+
+# Fit
+
+#
