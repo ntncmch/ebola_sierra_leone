@@ -11,7 +11,7 @@ A detailed step-by-step description of our analysis can be found [here](analysis
 
 ## Model
 
-We use a SEIR model accounting for delay in reporting. All durations (incubation period, infectious period, time from onset to notification) were calibrated using Sierra-Leone specific estimates from the [WHO Ebola Response Team](http://www.nejm.org/doi/abs/10.1056/NEJMoa1411100). We estimated the reproduction number R, the number of initially infectious, the reporting rate and the over-dispersion on the data.
+We use a SEIR model accounting for delay in reporting. All durations (incubation period, infectious period, time from onset to notification) were calibrated using Sierra-Leone specific estimates from the [WHO Ebola Response Team](http://www.nejm.org/doi/abs/10.1056/NEJMoa1411100). We estimated the reproduction number R, the number of infectious individuals at the beginning of the fit (6 July 2014), the reporting rate and over-dispersion in the data.
 
 ![model](figures/ebola_SL.png)
 
