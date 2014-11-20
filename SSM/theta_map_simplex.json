@@ -1,1 +1,46 @@
-{"resources":[{"description":"initial values for the parameters","name":"values","data":{"R0__sierra_leone":1.3485418739543618,"C__sierra_leone":86.271611964044396,"phi__sierra_leone":0.15438247606653302,"rho__sierra_leone":0.59925909217980544}},{"description":"covariance matrix","name":"covariance","data":{"R0__sierra_leone":{"R0__sierra_leone":0.048155724653042901},"C__sierra_leone":{"C__sierra_leone":16.389702481590199},"phi__sierra_leone":{"phi__sierra_leone":0.019482015725225201},"rho__sierra_leone":{"rho__sierra_leone":0.055458416567846502}}},{"name":"summary","data":{"id":0,"log_ltp":-61.854516315821591,"AICc":null,"n_parameters":4,"AIC":null,"DIC":null,"log_likelihood":null,"sum_squares":null,"n_data":12}}]}
+{
+  "resources": [
+    {
+      "description": "initial values for the parameters",
+      "name": "values",
+      "data": {
+        "R0__sierra_leone": 1.3485418739543618,
+        "C__sierra_leone": 86.271611964044396,
+        "phi__sierra_leone": 0.15438247606653302,
+        "rho__sierra_leone": 0.59925909217980544
+      }
+    },
+    {
+      "description": "covariance matrix",
+      "name": "covariance",
+      "data": {
+        "R0__sierra_leone": {
+          "R0__sierra_leone": 0.048155724653042901
+        },
+        "C__sierra_leone": {
+          "C__sierra_leone": 16.389702481590199
+        },
+        "phi__sierra_leone": {
+          "phi__sierra_leone": 0.019482015725225201
+        },
+        "rho__sierra_leone": {
+          "rho__sierra_leone": 0.055458416567846502
+        }
+      }
+    },
+    {
+      "name": "summary",
+      "data": {
+        "id": 0,
+        "log_ltp": -61.854516315821591,
+        "AICc": null,
+        "n_parameters": 4,
+        "AIC": null,
+        "DIC": null,
+        "log_likelihood": null,
+        "sum_squares": null,
+        "n_data": 12
+      }
+    }
+  ]
+}

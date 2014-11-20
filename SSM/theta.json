@@ -1,1 +1,32 @@
-{"resources":[{"name":"values","description":"initial values for the parameters","data":{"C__sierra_leone":176.95677915588,"phi__sierra_leone":0.124710094532929,"R0__sierra_leone":0.676022501429543,"rho__sierra_leone":0.616829324192358}},{"name":"covariance","description":"covariance matrix","data":{"C__sierra_leone":{"C__sierra_leone":17.695677915588},"phi__sierra_leone":{"phi__sierra_leone":0.0124710094532929},"R0__sierra_leone":{"R0__sierra_leone":0.0676022501429543},"rho__sierra_leone":{"rho__sierra_leone":0.0616829324192358}}}]}
+{
+  "resources": [
+    {
+      "name": "values",
+      "description": "initial values for the parameters",
+      "data": {
+        "C__sierra_leone": 176.95677915588,
+        "phi__sierra_leone": 0.124710094532929,
+        "R0__sierra_leone": 0.676022501429543,
+        "rho__sierra_leone": 0.616829324192358
+      }
+    },
+    {
+      "name": "covariance",
+      "description": "covariance matrix",
+      "data": {
+        "C__sierra_leone": {
+          "C__sierra_leone": 17.695677915588
+        },
+        "phi__sierra_leone": {
+          "phi__sierra_leone": 0.0124710094532929
+        },
+        "R0__sierra_leone": {
+          "R0__sierra_leone": 0.0676022501429543
+        },
+        "rho__sierra_leone": {
+          "rho__sierra_leone": 0.0616829324192358
+        }
+      }
+    }
+  ]
+}
