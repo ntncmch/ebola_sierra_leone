@@ -13,7 +13,7 @@ A detailed step-by-step description of our analysis can be found [here](analysis
 
 We use a SEIR model accounting for delay in reporting. All durations (incubation period, infectious period, time from onset to notification) were calibrated using Sierra-Leone specific estimates from the [WHO Ebola Response Team](http://www.nejm.org/doi/abs/10.1056/NEJMoa1411100).
 
-![model](figures/ebola_SL.pdf)
+![model](figures/ebola_SL.png)
 
 ## Fit to weekly [WHO]() data
 ![fit](SSM/mcmc/figures/fit_inc_ran_fit_nature_geobs_SL.pdf)
