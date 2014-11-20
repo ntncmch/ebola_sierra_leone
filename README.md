@@ -13,16 +13,16 @@ A detailed step-by-step description of our analysis can be found [here](analysis
 
 We use a SEIR model accounting for delay in reporting. All durations (incubation period, infectious period, time from onset to notification) were calibrated using Sierra-Leone specific estimates from the [WHO Ebola Response Team](http://www.nejm.org/doi/abs/10.1056/NEJMoa1411100). We estimated the reproduction number R, the number of infectious individuals at the beginning of the fit (6 July 2014), the reporting rate and over-dispersion in the data.
 
-![model](figures/ebola_SL.png =100x)
+![model](figures/ebola_SL.png)
 
 The force of infection at time t (lambda) is given by the ratio of the reproduction number and the infectious period, times the number of infectious individuals at that time.
 
 ## Fit to weekly [WHO](http://www.who.int/csr/disease/ebola/situation-reports/en/) data
-![fit](figures/fit_inc_ran_fit_nature_geobs_SL.png =200x)
+![fit](figures/fit_inc_ran_fit_nature_geobs_SL.png)
 
 ## Forecast
 
-![forecast](figures/fit_inc_exp_no_improvement.png =50x)
+![forecast](figures/fit_inc_exp_no_improvement.png)
 
 
 # Run our analysis
