@@ -16,11 +16,11 @@ We use a SEIR model accounting for delay in reporting. All durations (incubation
 ![model](figures/ebola_SL.png)
 
 ## Fit to weekly [WHO]() data
-![fit](SSM/mcmc/figures/fit_inc_ran_fit_nature_geobs_SL.pdf)
+![fit](figures/fit_inc_ran_fit_nature_geobs_SL.png)
 
 ## Forecast
 
-![forecast](SSM/forecast/no_improvement/figures/fit_inc_exp_no_improvement.pdf)
+![forecast](figures/fit_inc_exp_no_improvement.png)
 
 
 # Run our analysis
