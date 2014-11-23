@@ -8,7 +8,7 @@ All data, models, outputs and figures are provided in this repository (see for i
 
 Alternatively you can re-run our analysis using the instructions below.
 
-A detailed step-by-step description of our analysis can be found [here](R/analysis.html).
+A detailed step-by-step description of our analysis can be found [here](https://ntncmch.github.io/ebola_sierra_leone).
 
 # Run our analysis
 
