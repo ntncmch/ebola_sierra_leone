@@ -1,0 +1,110 @@
+---
+title: Modelling the Ebola outbreak in Sierra-Leone
+author: Anton Camacho & Joseph Dureau
+---
+
+```{r global_options, include=FALSE}
+
+dir_repo <- "/Users/Tonton/work/projects/misc/ebola_sierra_leone"
+
+opts_chunk$set(echo=FALSE, cache=FALSE, warning=FALSE, message=FALSE)
+
+```
+
+```{r load_packages, include=FALSE}
+
+library(png)
+library(grid)
+library(broman)
+library(pander)
+library(devtools)
+library(tidyr)
+library(plyr)
+library(lubridate)
+library(stringr)
+library(dplyr)
+library(gdata)
+library(ggthemr)
+ggthemr("fresh")
+
+# tell pander not to split tables
+panderOptions('table.split.table', Inf)
+
+```
+
+
+# Data
+
+Weekly number of confirmed plus probable Ebola cases for Sierra-Leone were obtained from the [WHO Situation Report](http://www.who.int/csr/disease/ebola/situation-reports/en/?m=20141112) of 12 November 2014. Since the model presented in Whitty et al. was fitted to data from 13 July to 28 September, we focused on the same time-period.
+
+```{r plot_data, include=TRUE, fig.width=6, fig.height=4}
+
+data <- read.csv(file.path(dir_repo,"SSM/data/data_sierra_leone.csv")) %>% mutate(date=as.Date(date))
+
+p <- ggplot(data, aes(x=date, y=cases_obs__sierra_leone)) + geom_bar(stat="identity") + ylab("Weeky reported cases")
+print(p)
+
+```
+
+# Model
+
+We used a SEIR model accounting for delay in notification (cases are reported when they leave the $I_1$ compartment). 
+
+```{r model, fig.width=6, fig.height=2}
+img <- readPNG("../figures/ebola_SL.png")
+grid.raster(img)
+```
+
+The force of infection ($\lambda$) at time $t$ is given by $R_0/D_{inf}(I_1(t)+I_2(t))$.
+
+All durations - incubation period ($D_{inc}$), infectious period ($D_{inf}$), time from onset to notification ($D_{notif}$) - were calibrated using Sierra-Leone specific estimates from the [WHO Ebola Response Team](http://www.nejm.org/doi/abs/10.1056/NEJMoa1411100). In particular, since our model doesn't explicitely account for death and recovery, the infectious period was computed as:
+
+$$ D_{inf} = D_{death}\times CFR + D_{recovery}\times (1-CFR) $$
+
+where $D_{death}$ ($=8.6$ days) and $D_{recovery}$ ($=17.2$ days) are the time from onset to death and to recovery, respectively, and $CFR$ ($=0.69$) is the case fatality ratio. This gives $D_{inf}\approx11$ days.
+
+We estimated the basic reproduction number $R_0$ and the number of infectious individuals at the beginning of the first week in the data (6 July 2014). The observation porcess was modelled as a discretized Normal distribution, whose reporting rate and over-dispersion parameters were also estimated. Let $\tilde Z_t$ be the number of cases reported on the week ending at time $t$, we have the following observation process:
+
+$$ \tilde Z_t \sim  \mathcal{N}(\rho Z_t, \sqrt{\rho (1-\rho) Z_t + (\rho \phi Z_t)^2} )$$
+
+where $Z_t=\int_{t-7}^t I_1(t) dt$ is the true incidence in the model.
+
+We used uniform priors for all parameters except the reporting rate, which was set to an informative Normal prior due to identifiability issues. Indeed, when fitting the increasing phase of an epidemic, the reporting rate is highly correlated to the initial number of infectious and they can't be both identified. Using an informative prior allows us to solve this issue and let some variability in the estimates.
+
+
+Parameter		Description								Prior	
+----------- 	-------------------------------------	------------------- 
+$R_0$			Basic reproduction number				$\mathcal{U}(0,5)$	
+$D_{inc}$  		Incubation period 						9 days (fixed)	 	
+$D_{inf}$		Infectious period						11 days (fixed)		
+$D_{notif}$		Time from onset to notification			4.5 days (fixed)		
+$\rho$			Reporting rate 							$\mathcal{N}(0.6,0.1)$	
+$\phi$			Over-dispersion	in the data 			$\mathcal{U}(0,0.5)$		
+$N$				Population size							6,348,450 (fixed)			
+$I_1(0)$		Initial number of infectious in $I_1$	$\mathcal{U}(1,200)$		
+$I_2(0)$		Initial number of infectious in $I_2$	$I_1(0)*(D_{inf}-D_{notif})/D_{notif}$	
+$E(0)$			Initial number of exposed 				$I_1(0)*D_{inc}/D_{notif}$	
+$R(0)$			Initial number of removed 				0 (fixed)	
+$S(0)$			Initial number of susceptible 			$N - E(0) - I_1(0) - I_2(0) - R(0)$	
+
+# Fit
+
+_In development_
+
+```{r fit, fig.width=10, fig.height=7}
+img <- readPNG("../figures/fit_inc_ran_fit_nature_geobs_SL.png")
+grid.raster(img)
+```
+
+# Forecast
+
+_In development_
+
+```{r forecast, fig.width=10, fig.height=7}
+img <- readPNG("../figures/fit_inc_exp_no_improvement.png")
+grid.raster(img)
+```
+
+# Intervention
+
+_In development_

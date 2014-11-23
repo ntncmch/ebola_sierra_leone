@@ -1,29 +1,14 @@
-# Re-analysis of the Ebola outbreak in Sierra-Leone
+# Modelling the Ebola outbreak in Sierra-Leone
 
-Modelling work presented in a recent Nature Comment by [Whitty et al.](http://www.nature.com/news/infectious-disease-tough-choices-to-reduce-ebola-transmission-1.16298) suggests that, without any intervention, the Ebola outbreak in Sierra Leone could peak early December, reaching a maximum of 1600 weekly cases. Here, we show that this figure is misleading and provide a fully transparent and reproducible analysis of the same data-set.
+Modelling work presented in a recent Nature Comment by [Whitty et al.](http://www.nature.com/news/infectious-disease-tough-choices-to-reduce-ebola-transmission-1.16298) suggests that, without any intervention, the Ebola outbreak in Sierra Leone could peak early December, reaching a maximum of 1600 weekly cases.
 
-# Results
+Here, we show that this figure is misleading and provide a fully transparent and reproducible analysis of the same data-set.
 
 All data, models, outputs and figures are provided in this repository (see for instance [here](SSM/forecast/no_improvement/figures) for the baseline model). 
+
 Alternatively you can re-run our analysis using the instructions below.
 
-A detailed step-by-step description of our analysis can be found [here](analysis.Rmd). It is currently under development, see below for a snapshot of our main results.
-
-## Model
-
-We use a SEIR model accounting for delay in reporting. All durations (incubation period, infectious period, time from onset to notification) were calibrated using Sierra-Leone specific estimates from the [WHO Ebola Response Team](http://www.nejm.org/doi/abs/10.1056/NEJMoa1411100). We estimated the reproduction number R, the number of infectious individuals at the beginning of the fit (6 July 2014), the reporting rate and over-dispersion in the data.
-
-![model](figures/ebola_SL.png)
-
-The force of infection at time t (lambda) is given by the ratio of the reproduction number and the infectious period, times the number of infectious individuals at that time.
-
-## Fit to weekly [WHO](http://www.who.int/csr/disease/ebola/situation-reports/en/) data
-![fit](figures/fit_inc_ran_fit_nature_geobs_SL.png)
-
-## Forecast
-
-![forecast](figures/fit_inc_exp_no_improvement.png)
-
+A detailed step-by-step description of our analysis can be found [here](R/analysis.html).
 
 # Run our analysis
 
