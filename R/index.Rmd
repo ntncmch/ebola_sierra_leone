@@ -1,6 +1,7 @@
 ---
-title: Modelling the Ebola outbreak in Sierra-Leone
+title: "Wrong model, right conclusion: re-analysis of the Ebola virus outbreak in Sierra Leone"
 author: Anton Camacho & Joseph Dureau
+bibliography: library_papers2.bib
 ---
 
 ```{r global_options, include=FALSE}
@@ -22,6 +23,7 @@ library(tidyr)
 library(plyr)
 library(lubridate)
 library(stringr)
+library(scales)
 library(dplyr)
 library(gdata)
 library(ggthemr)
@@ -31,6 +33,20 @@ ggthemr("fresh")
 panderOptions('table.split.table', Inf)
 
 ```
+
+# Motivation
+
+Modelling work presented in a recent _Nature_ Comment [[@Whitty:2014gc]](http://www.nature.com/news/infectious-disease-tough-choices-to-reduce-ebola-transmission-1.16298) suggests that, without any intervention, the Ebola outbreak in Sierra Leone will peak in early December, reaching a maximum of 1600 weekly reported cases. We argue that this figure is misleading and call for better practice in publishing modelling results.
+
+Assuming that no interventions are in place to reduce transmission, the only reason for the epidemic to peak is via depletion of the susceptible population to a proportion equal $$p_S=\frac{1}{R_0},$$ where $R_0$ is the basic reproduction number (the average number of secondary cases infected by a primary case in a fully susceptible population). Measuring $R_0$ can be difficult because it requires information on the proportion of the population that is immune at the onset of the outbreak. Instead, what is usually measured is the initial reproduction number $$R_{t_0}=R_0\frac{S_{t_0}}{N},$$ that is $R_0$ times the proportion of susceptible (i.e. non-immune) individuals in the population (of size $N$) when the epidemic starts (at time $t_0$). 
+
+However, in the case of a zoonotic virus like Ebola, it is unlikely that a substantial proportion of the Sierra Leone population was immunised by previous exposure to the virus. As such, we can approximate $R_0\approx R_{t_0}$ and $p_S\approx 1/R_{t_0}$. The authors of the _Nature_ Comment report an average reproduction number ($R$, the average number of people infected by each newly infected person) between 1.2 and 1.5 up to early October. This translates into a proportion of susceptible between 67 and 83% at the epidemic peak, that is a cumulative number of cases between `r comma(signif(5743725*17/100,2))` and `r comma(signif(5743725*33/100,2))`.
+
+By contrast, the figure presented in the Comment by [Whitty et al.](http://www.nature.com/news/infectious-disease-tough-choices-to-reduce-ebola-transmission-1.16298) shows approximately `r comma(1600*20/2)` cumulative cases at the epidemic peak (this is a crude upper bound based on a triangular approximation of the incidence curve).
+
+For the current epidemic to peak in December at 1600 weekly reported cases, this would imply that fewer than `r round(100*1600*20/2/(5743725*17/100))`% of infections are reported – a far from credible proportion. Using more realistic assumptions (60% of cases reported), our analysis suggests that without intervention the epidemic will not peak before July 2015, reaching tens of thousand cases per week [2, Figure 1]. In the face of such a nightmare scenario, scaling up the international response as advocated by Whitty et al. appears even more critical. 
+
+The magnitude to which our conclusions differ raises the question of transparency, verifiability and reproducibility of scientific analysis. These are the conditions under which the scientific community will be able to reliably inform decision-making, even more so in urgent situations such as the outbreak we are currently facing. Already, open source technologies are being harnessed to efficiently build and share databases on the current Ebola outbreak. We call for a similar effort to support published modelling results and provide our re-analysis of the data used by Whitty et al. in an open format.
 
 
 # Data
@@ -108,3 +124,6 @@ grid.raster(img)
 # Intervention
 
 _In development_
+
+
+# References
