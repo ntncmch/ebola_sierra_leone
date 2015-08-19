@@ -1,5 +1,5 @@
 ---
-title: "Wrong model, right conclusion: re-analysis of the Ebola virus outbreak in Sierra Leone"
+title: "Wrong model, right decision: re-analysis of the Ebola virus outbreak in Sierra Leone"
 author: Anton Camacho & Joseph Dureau
 bibliography: library_papers2.bib
 ---
@@ -73,19 +73,19 @@ grid.raster(img)
 
 The force of infection ($\lambda$) at time $t$ is given by $R_0/D_{inf}(I_1(t)+I_2(t))$.
 
-All durations - incubation period ($D_{inc}$), infectious period ($D_{inf}$), time from onset to notification ($D_{notif}$) - were calibrated using Sierra-Leone specific estimates from the [WHO Ebola Response Team](http://www.nejm.org/doi/abs/10.1056/NEJMoa1411100). In particular, since our model doesn't explicitely account for death and recovery, the infectious period was computed as:
+All durations - incubation period ($D_{inc}$), infectious period ($D_{inf}$), time from onset to notification ($D_{notif}$) - were calibrated using Sierra-Leone specific estimates from the [WHO Ebola Response Team](http://www.nejm.org/doi/abs/10.1056/NEJMoa1411100). In particular, since our model doesn't explicitly account for death and recovery, the infectious period was computed as:
 
 $$ D_{inf} = D_{death}\times CFR + D_{recovery}\times (1-CFR) $$
 
 where $D_{death}$ ($=8.6$ days) and $D_{recovery}$ ($=17.2$ days) are the time from onset to death and to recovery, respectively, and $CFR$ ($=0.69$) is the case fatality ratio. This gives $D_{inf}\approx11$ days.
 
-We estimated the basic reproduction number $R_0$ and the number of infectious individuals at the beginning of the first week in the data (6 July 2014). The observation porcess was modelled as a discretized Normal distribution, whose reporting rate and over-dispersion parameters were also estimated. Let $\tilde Z_t$ be the number of cases reported on the week ending at time $t$, we have the following observation process:
+We estimated the basic reproduction number $R_0$ and the number of infectious individuals at the beginning of the first week in the data (6 July 2014). The observation process was modelled as a discretized Normal distribution, whose reporting rate and over-dispersion parameters were also estimated. Let $\tilde Z_t$ be the number of cases reported on the week ending at time $t$, we have the following observation process:
 
 $$ \tilde Z_t \sim  \mathcal{N}(\rho Z_t, \sqrt{\rho (1-\rho) Z_t + (\rho \phi Z_t)^2} )$$
 
 where $Z_t=\int_{t-7}^t I_1(t) dt$ is the true incidence in the model.
 
-We used uniform priors for all parameters except the reporting rate, which was set to an informative Normal prior due to identifiability issues. Indeed, when fitting the increasing phase of an epidemic, the reporting rate is highly correlated to the initial number of infectious and they can't be both identified. Using an informative prior allows us to solve this issue and let some variability in the estimates.
+We used uniform priors for all parameters except the reporting rate, which had an informative Normal prior centred around 60%. Indeed, when fitting the increasing phase of an epidemic, the reporting rate is correlated to the initial number of infectious thus leading to identifiability issues. Using an informative prior allows us to solve this issue while integrating some uncertainty on the reporting.
 
 
 Parameter		Description								Prior	
@@ -103,14 +103,23 @@ $E(0)$			Initial number of exposed 				$I_1(0)*D_{inc}/D_{notif}$
 $R(0)$			Initial number of removed 				0 (fixed)	
 $S(0)$			Initial number of susceptible 			$N - E(0) - I_1(0) - I_2(0) - R(0)$	
 
+
+# Parameter inference
+
+Model fitting and parameter inference were performed using the SSM library [@Dureau:2013wh], freely available at <https://github.com/JDureau/ssm>. This library implements a Metropolis-Hastings adaptive MCMC algorithm with a multivariate normal proposal distribution. The adaptive procedure of the proposal kernel operates in two steps. First, the size of the covariance matrix is adapted at each iteration to achieve an optimal acceptance rate around 23\% [@Roberts:1997wf]. Second, its shape is adapted by using the empirical covariance matrix, computed from the accepted samples and updated at each iteration, thus leading to an optimal proposal distribution [@Roberts:2009wg].
+
+The SSM library [@Dureau:2013wh] also implements a simplex algorithm, which was used to maximise the (non-normalized) posterior distribution and thus initialise the MCMC close to the mode of the target. Since the simplex algorithm only guaranty convergence to a local maximum, we ran 1000 independent simplex initialised from parameter sets sampled from the prior distribution. We selected the simplex that converged to the highest posterior density value, and used the outputed parameter set to initialise 5 independent MCMC chains of 100,000 iterations. We visually checked that the 5 chains converged to the same stationary distribution and combined them after appropriate burning and thinning. The posterior distribution of the model parameters and the model fitting were plotted using R [@Rsoftware].
+
 # Fit
 
-_In development_
+
 
 ```{r fit, fig.width=10, fig.height=7}
 img <- readPNG("../figures/fit_inc_ran_fit_nature_geobs_SL.png")
 grid.raster(img)
 ```
+
+
 
 # Forecast
 
